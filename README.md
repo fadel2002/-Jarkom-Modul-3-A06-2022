@@ -6,6 +6,10 @@
 2. Mohammad Fany Faizul Akbar - 5025201225
 3. Fadel Pramaputra Maulana - 5025201260
 
+## Topologi
+
+![Topologi](image/Nomor%201%20dan%202/2.png)
+
 ## Konfigurasi Node
 
 ### Ostania
@@ -96,11 +100,44 @@ iface eth0 inet static
 	gateway 10.2.2.1
 ```
 
-## Nomor 1
+## Nomor 1 dan 2
 
 ### Soal
 
+![Soal 1 dan 2](image/Nomor%201%20dan%202/1.png)
+Loid bersama Franky berencana membuat peta tersebut dengan kriteria WISE sebagai DNS Server, Westalis sebagai DHCP Server, Berlint sebagai Proxy Server (1), dan Ostania sebagai DHCP Relay (2). Loid dan Franky menyusun peta tersebut dengan hati-hati dan teliti.
 ### Cara Pengerjaan
+
+DNS Server (WISE)
+
+WISE sebagai DNS Server perlu menginstall `bind9`.
+```
+apt-get update
+apt-get install bind9 -y
+```
+DHCP Server (Westalis)
+
+Westalis sebagai DHCP Server perlu menginstall `isc-dhcp-server`.
+
+```
+apt-get update
+apt-get install isc-dhcp-server -y
+```
+
+Proxy Server (Berlint)
+
+Berlint sebagai Proxy Server perlu menginstall `squid`.
+```
+apt-get update
+apt-get install squid -y
+```
+DHCP Relay (Ostania)
+
+Ostania sebagai DHCP Relay perlu menginstall `isc-dhcp-relay`.
+```
+apt-get update
+apt-get install isc-dhcp-relay -y
+```
 
 ## Nomor 3
 
