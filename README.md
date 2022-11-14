@@ -289,33 +289,33 @@ options {
 };
 ```
 
-Melakukan testing
+### **Melakukan testing**
 
-Pada SSS
+**Pada SSS**
 
 ![Dokumentasi 4-1](image/Nomor%204/1.png)
 
 ![Dokumentasi 4-2](image/Nomor%204/2.png)
 
-Pada Garden
+**Pada Garden**
 
 ![Dokumentasi 4-3](image/Nomor%204/3.png)
 
 ![Dokumentasi 4-4](image/Nomor%204/4.png)
 
-Pada Eden
+**Pada Eden**
 
 ![Dokumentasi 4-5](image/Nomor%204/5.png)
 
 ![Dokumentasi 4-6](image/Nomor%204/6.png)
 
-Pada NewstonCastle
+**Pada NewstonCastle**
 
 ![Dokumentasi 4-7](image/Nomor%204/7.png)
 
 ![Dokumentasi 4-8](image/Nomor%204/8.png)
 
-Pada KemonoPark
+**Pada KemonoPark**
 
 ![Dokumentasi 4-9](image/Nomor%204/9.png)
 
@@ -413,13 +413,13 @@ Dalam `/etc/squid/sites.whitelist.working_hour.txt` diisi dengan situs yang hany
 .loid-work.com
 ```
 
-Jam Kerja
+**Jam Kerja**
 
 ![Dokumentasi squid 1-1](image/squid/nomor%201/1.png)
 
 ![Dokumentasi squid 1-2](image/squid/nomor%201/2.png)
 
-Tidak Jam Kerja
+**Tidak Jam Kerja**
 
 ![Dokumentasi squid 1-3](image/squid/nomor%201/3.png)
 
@@ -469,11 +469,11 @@ Menjadi :
 http_access allow ssl_ports !WORKING_SITES !AVAILABLE_WORKING
 ```
 
-HTTP
+**HTTP**
 
 ![Dokumentasi squid 3-1](image/squid/nomor%203/nomor%203-1.png)
 
-HTTPS
+**HTTPS**
 
 ![Dokumentasi squid 3-2](image/squid/nomor%201/4.png)
 
@@ -514,11 +514,11 @@ acl WEEKEND time AS 00:00-23:59
 ```
 Untuk konfigurasi `squid` sudah sama dengan konfigurasi yang ada pada no.4.
 
-Testing Weekday
+**Testing Weekday**
 
 ![Dokumentasi 1 squid No 4 dan 5](image/squid/nomor%204%20dan%205/1.png)
 
-Testing Weekend
+**Testing Weekend**
 
 ![Dokumentasi 2 squid No 4 dan 5](image/squid/nomor%204%20dan%205/2.png)
 ## Dokumentasi
@@ -526,3 +526,7 @@ Testing Weekend
 ![Dokumentasi 1](image/dokumentasi%201.png)
 
 ![Dokumentasi 2](image/dokumentasi%202.png)
+
+## Kendala
+
+Tidak ada.
