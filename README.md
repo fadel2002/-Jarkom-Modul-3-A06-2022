@@ -393,9 +393,37 @@ Client hanya dapat mengakses internet diluar (selain) hari & jam kerja (senin-ju
 
 ### Cara Pengerjaan
 
-Tidak berhasil membatasi HTTPS.
+Install squid pada Berlint (Proxy Server)
 
-![Dokumentasi squid 1-1](image/squid/nomor%201/nomor%201-1.png)
+```bash
+apt-get update
+apt-get install squid -y
+```
+
+Kemudian konfigurasikan di `/etc/squid/squid.conf` `acl` dan `http_access` untuk hari dan jam kerja seperti sebagai berikut.
+```
+acl AVAILABLE_WORKING time MTWHF 08:00-17:00
+acl WORKING_SITES dstdomain "/etc/squid/sites.whitelist.working_hour.txt"
+http_access allow !WORKING_SITES !AVAILABLE_WORKING
+``` 
+
+Dalam `/etc/squid/sites.whitelist.working_hour.txt` diisi dengan situs yang hanya dapat diakses saat hari dan jam kerja.
+```
+.franky-work.com
+.loid-work.com
+```
+
+Jam Kerja
+
+![Dokumentasi squid 1-1](image/squid/nomor%201/1.png)
+
+![Dokumentasi squid 1-2](image/squid/nomor%201/2.png)
+
+Tidak Jam Kerja
+
+![Dokumentasi squid 1-3](image/squid/nomor%201/3.png)
+
+![Dokumentasi squid 1-4](image/squid/nomor%201/4.png)
 
 ## Nomor 2
 
@@ -406,38 +434,10 @@ tujuan domain dibebaskan)
 
 ### Cara Pengerjaan
 
-Menginstall squid pada Berlint (Proxy Server)
+Tambahkan file konfigurasi squid berikut ke `/etc/squid/squid.conf` !
 
 ```bash
-apt-get update
-apt-get install squid -y
-```
-
-Kemudian membuat acl waktu pada file `/etc/squid/acl.conf` dengan isi
-
-```bash
-acl AVAILABLE_WORKING time MTWHF 08:00-17:00
-```
-
-Kemudian membuat file `/etc/squid/sites.whitelist.working_hour.txt` yang berisi daftar whitelist situs yang bisa dibuka pada saat jam kerja yaitu
-
-```bash
-.loid-work.com
-.franky-work.com
-```
-
-Kemudian isi dari file konfigurasi squid `/etc/squid/squid.conf` dibuat menjadi
-
-```bash
-include /etc/squid/acl.conf
-
-acl WORKING_HOUR_WHITELIST dstdomain \"/etc/squid/sites.whitelist.working_hour.$
-
-http_port 8080
-visible_hostname Berlint
-
-http_access allow WORKING_HOUR_WHITELIST AVAILABLE_WORKING
-http_access deny all
+http_access allow WORKING_SITES AVAILABLE_WORKING
 ```
 
 ![Dokumentasi squid 2-1](image/squid/nomor%202/nomor%202-1.png)
@@ -456,13 +456,26 @@ Saat akses internet dibuka, client dilarang untuk mengakses web tanpa HTTPS. (Co
 
 ### Cara Pengerjaan
 
-Pada file konfigurasi squid ditambahkan konfigurasi
-
+Tambahkan acl untuk port HTTPS ke `/etc/squid/squid.conf`
+```
+acl ssl_ports port 443
+```
+Lalu ubah konfigurasi berikut.
+```
+http_access allow !WORKING_SITES !AVAILABLE_WORKING
+```
+Menjadi :
 ```bash
-http_access deny all
+http_access allow ssl_ports !WORKING_SITES !AVAILABLE_WORKING
 ```
 
+HTTP
+
 ![Dokumentasi squid 3-1](image/squid/nomor%203/nomor%203-1.png)
+
+HTTPS
+
+![Dokumentasi squid 3-2](image/squid/nomor%201/4.png)
 
 ## Nomor 4
 
