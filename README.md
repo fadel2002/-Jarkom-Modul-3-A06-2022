@@ -474,7 +474,17 @@ speed maksimal yaitu 128 Kbps)
 
 ### Cara Pengerjaan
 
-Tidak berhasil mengatur bandwidth.
+Untuk membatasi akses internet dengan kecepatan maksimum 128 Kbps, maka `delay_parameters` diatur dengan nilai 128/8 Kbps menjadi `delay_parameters 1 16000/16000`. Isi file `/etc/squid/squid.conf` dengan konfigurasi berikut.
+```
+delay_pools 1
+delay_class 1 1
+# delay_access 1 allow all --> ini syntax untuk nomer 4 dimana tidak ada pembatasan hari
+delay_access 1 allow WEEKEND
+delay_access 1 deny all
+delay_parameters 1 16000/16000
+```
+
+Untuk testing digabung dengan testing No.5.
 
 ## Nomor 5
 
@@ -485,8 +495,19 @@ kecepatan hanya diberlakukan untuk pengaksesan internet pada hari libur
 
 ### Cara Pengerjaan
 
-Tidak berhasil mengatur bandwidth pada waktu tertentu.
+Sama seperti no.4, namun untuk delay access nya menggunakan acl `WEEKEND`. Untuk konfigurasi acl `WEEKEND` adalah sebagai berikut.
+```
+acl WEEKEND time AS 00:00-23:59
+```
+Untuk konfigurasi `squid` sudah sama dengan konfigurasi yang ada pada no.4.
 
+Testing Weekday
+
+![Dokumentasi 1 squid No 4 dan 5](image/squid/nomor%204%20dan%205/1.png)
+
+Testing Weekend
+
+![Dokumentasi 2 squid No 4 dan 5](image/squid/nomor%204%20dan%205/2.png)
 ## Dokumentasi
 
 ![Dokumentasi 1](image/dokumentasi%201.png)
